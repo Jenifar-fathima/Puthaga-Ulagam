@@ -24,7 +24,8 @@
                 <h1>Puthaga Ulagam</h1>
                 <div>
                     <ul>
-                        <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
+                        <li><a runat="server" href="~/Views/ViewBook">View Book</a></li>
                     </ul>
                 </div>
             </div>
