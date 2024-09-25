@@ -3,6 +3,7 @@
     public enum OperationType
     {
         Add,
-        Update
+        Update,
+        Delete
     }
 }

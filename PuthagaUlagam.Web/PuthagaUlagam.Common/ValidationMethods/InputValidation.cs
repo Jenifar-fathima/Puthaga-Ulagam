@@ -21,7 +21,7 @@ namespace PuthagaUlagam.Common
 
         public static bool IsValidPrice(string Price)
         {
-            if (!int.TryParse(Price, out _))
+            if (!decimal.TryParse(Price, out _))
             {
                 return false;
             }

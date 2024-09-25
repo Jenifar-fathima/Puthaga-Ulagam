@@ -1,4 +1,5 @@
-﻿using PuthagaUlagam.Logic;
+﻿using PuthagaUlagam.Common;
+using PuthagaUlagam.Logic;
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -7,7 +8,7 @@ namespace PuthagaUlagam
 {
     public partial class ViewBook : Page
     {
-        BookOperationBL operationBL = new BookOperationBL();
+        private readonly BookOperationBL operationBL = new BookOperationBL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,21 +25,33 @@ namespace PuthagaUlagam
 
         protected void EditBtn(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            GridViewRow row = (GridViewRow)btn.NamingContainer;
-            int rowIndex = row.RowIndex;
-            Session["RowIndex"] = rowIndex;
-            Response.Redirect("AddUpdateBook.aspx");
+            HandleBookButton(sender, e, OperationType.Update);
         }
 
         protected void DeleteBtn(object sender, EventArgs e)
+        {
+            HandleBookButton(sender, e, OperationType.Delete);
+        }
+
+        protected void HandleBookButton(object sender, EventArgs e, OperationType operationType)
         {
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             int rowIndex = row.RowIndex;
 
-            operationBL.DeleteBook(rowIndex);
-            LoadBooks();
+            var books = operationBL.GetBooks();
+            int isbn = books[rowIndex].ISBN;
+
+            if (operationType == OperationType.Update)
+            {
+                Session["ISBN"] = isbn;
+                Response.Redirect("AddUpdateBook.aspx");
+            }
+            else if (operationType == OperationType.Delete)
+            {
+                operationBL.DeleteBook(isbn);
+                LoadBooks();
+            }
         }
     }
 }
