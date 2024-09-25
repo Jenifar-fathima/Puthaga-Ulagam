@@ -22,8 +22,9 @@
                 <div>
                     <nav>
                         <ul>
-                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
-                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Views/ViewBook">View Book</a></li>
+                            <li><a runat="server" href="~/">Home</a></li>
+                            <li><a runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
+                            <li><a runat="server" href="~/Views/ViewBook">View Book</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -31,7 +32,6 @@
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
-
             </main>
 
             <footer>
