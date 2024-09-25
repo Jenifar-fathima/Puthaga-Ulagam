@@ -141,7 +141,6 @@
     <Compile Include="PuthagaUlagam.Common\Enums\OperationType.cs" />
     <Compile Include="PuthagaUlagam.Common\Messages\Messages.cs" />
     <Compile Include="PuthagaUlagam.Common\ValidationMethods\InputValidation.cs" />
-    <Compile Include="PuthagaUlagam.Data\DataContext\DataContext.cs" />
     <Compile Include="PuthagaUlagam.Data\Entities\Book.cs" />
     <Compile Include="PuthagaUlagam.Logic\BookOperationBL.cs" />
     <Compile Include="Site.Master.cs">
@@ -207,7 +206,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>21693</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44344/</IISUrl>
+          <IISUrl>http://localhost:44344/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
