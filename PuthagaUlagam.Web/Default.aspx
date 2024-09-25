@@ -5,7 +5,7 @@
     <section class="home">
         <div class="home-content">
             <h1>Welcome to
-                <br />
+
                 <span class="tamil-title">புத்தக உலகம்</span></h1>
             <p>Your gateway to a world of books. Discover, explore, and immerse yourself in a vast collection of literary treasures.</p>
         </div>
