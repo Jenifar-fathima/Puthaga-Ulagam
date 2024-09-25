@@ -172,6 +172,17 @@ footer {
         padding: 1rem;
     }
 
+    .view-table table th {
+        background: var(--primary-color);
+        color: var(--primary-font-color);
+    }
+
+@media only screen and (max-width:1420px) {
+    .view-table table td {
+        padding: .5rem;
+    }
+}
+
 .home {
     color: var(--secondary-font-color);
     text-align: center;
