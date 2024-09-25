@@ -1,0 +1,199 @@
+﻿/*===========================================Site.Master====================================================*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: 400;
+}
+
+header {
+    height: 10vh;
+    font-family: var(--font-family);
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    min-height: 5vh;
+}
+
+header h1 {
+    text-align: center;
+    padding: 0.7%;
+    background: var(--primary-color);
+    color: var(--primary-font-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(#f5deb3a9,#d28f1cd9,#00000021,#00000059),url('../../Images/bg4.jfif') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+    nav ul li {
+        margin: 1rem;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 2em;
+            background: var(--button-hover-color);
+            color: var(--primary-font-color);
+            box-shadow: 0 0 10px var(--shadow-color);
+            font-family: var(--font-family);
+        }
+
+            nav ul li a:hover {
+                background: var(--button-color);
+                color: var(--secondary-font-color);
+                box-shadow: 0 0 10px var(--primary-color);
+                font-weight: 500;
+            }
+
+footer {
+    text-align: center;
+    padding: 0.3%;
+    background: var(--primary-color);
+    width: 100%;
+    color: var(--primary-font-color);
+}
+
+/*===========================================AddUpdateBook====================================================*/
+.add-update-book, .view-table {
+    background: rgba(0, 0, 0, 0.65);
+    width: 50%;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px var(--shadow-color);
+    height: auto;
+    text-align: center;
+    color: var(--primary-font-color);
+    font-family: Roboto;
+}
+
+    .add-update-book .calender-block table {
+        background: var(--button-color);
+        color: var(--shadow-color);
+    }
+
+    .add-update-book .calender-block input[type="submit"] {
+        float: left;
+        border-radius: 5px;
+        width: 15%;
+    }
+
+        .add-update-book .calender-block input[type="submit"]:hover {
+            background: var(--button-color);
+            color: var(--secondary-font-color);
+            border-radius: 5px;
+        }
+
+
+    .add-update-book .add-update-button input[type="submit"] {
+        width: 40%;
+        font-size: 1.1em;
+        background: var(--primary-color);
+        color: var(--primary-font-color);
+    }
+
+        .add-update-book .add-update-button input[type="submit"]:hover {
+            background: var(--button-color);
+            color: var(--secondary-font-color);
+            font-weight: 500;
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+.main-content table {
+    background: var(--table-color);
+    color: var(--primary-color);
+    text-align: center;
+    box-shadow: 0 0 3px var(--secondary-color);
+}
+
+.main-content input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid var(--table-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.main-content .add-update-book .page-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    font-family: var(--font-family);
+}
+
+.main-content .view-table .page-title {
+    font-size: 1.5em;
+    font-family: var(--font-family);
+}
+
+
+/*===========================================ViewBook====================================================*/
+
+.main-content input[type="submit"] {
+    background: var(--button-hover-color);
+    color: var(--primary-font-color);
+    padding: 0.5em;
+    margin: auto;
+    border-radius: 2em;
+}
+
+    .main-content input[type="submit"]:hover {
+        background: var(--button-color);
+        color: var( --secondary-font-color);
+        padding: 0.5em;
+        margin: auto;
+        border-radius: 2em;
+    }
+
+.view-table table {
+    width: 100%;
+}
+
+    .view-table table td {
+        padding: 1rem;
+    }
+
+.home {
+    color: var(--secondary-font-color);
+    text-align: center;
+    font-family: var(--font-family);
+}
+
+    .home h1 {
+        font-size: 4em;
+        text-align: center;
+        text-shadow: 1px 1px 10px var(--primary-color);
+        color: var(--primary-font-color);
+    }
+
+        .home h1 .tamil-title {
+            font-size: 1.5em;
+            display: block;
+            color: var(--secondary-font-color);
+            text-shadow: 3px 3px 4px var(--primary-color);
+        }
+
+    .home p {
+        font-size: 2em;
+        color: var(--primary-font-color);
+        text-shadow: 1px 1px 5px var(--primary-color);
+    }

@@ -1,0 +1,11 @@
+﻿:root {
+    --primary-color: #66381bd5;
+    --secondary-color: #F5F5DC;
+    --primary-font-color: #F5F5DC;
+    --secondary-font-color: #66381bd5;
+    --table-color: #F5F5DC;
+    --button-color: linear-gradient(#d28f1cd9,wheat);
+    --button-hover-color: #66381bd5;
+    --font-family: 'Harlow Solid';
+    --shadow-color: black;
+}
