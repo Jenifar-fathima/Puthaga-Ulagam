@@ -99,6 +99,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\CSS\Core\Main.css" />
+    <Content Include="Assets\CSS\Theme\Primary.css" />
+    <Content Include="Assets\Images\bg4.jfif" />
     <Content Include="Content\Application.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />

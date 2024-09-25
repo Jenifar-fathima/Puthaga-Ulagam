@@ -7,6 +7,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Puthaga Ulagam</title>
+    <link href="Assets/CSS/Theme/Primary.css" rel="stylesheet" />
+    <link href="Assets/CSS/Core/Main.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -19,12 +21,10 @@
             <main>
                 <div>
                     <nav>
-                        <div>
-                            <ul>
-                                <li class="nav-item"><a class="nav-link" runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
-                                <li class="nav-item"><a class="nav-link" runat="server" href="~/Views/ViewBook">View Book</a></li>
-                            </ul>
-                        </div>
+                        <ul>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="~/Views/ViewBook">View Book</a></li>
+                        </ul>
                     </nav>
                 </div>
                 <div class="main-content">
