@@ -1,30 +1,30 @@
-﻿/*===========================================Site.Master====================================================*/
-
-* {
+﻿* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     height: 10vh;
     font-family: var(--font-family);
+    background: var(--primary-color);
+    color: var(--primary-font-color);
 }
 
 main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
 }
 
 footer {
     min-height: 5vh;
-}
-
-header h1 {
-    text-align: center;
-    padding: 0.7%;
-    background: var(--primary-color);
-    color: var(--primary-font-color);
+    font-family: var(--font-family);
 }
 
 .container {
@@ -50,14 +50,12 @@ nav ul {
         nav ul li a {
             text-decoration: none;
             padding: 10px 20px;
-            border-radius: 2em;
-            background: var(--button-hover-color);
             color: var(--primary-font-color);
-            box-shadow: 0 0 10px var(--shadow-color);
             font-family: var(--font-family);
         }
 
             nav ul li a:hover {
+                border-radius: 2em;
                 background: var(--button-color);
                 color: var(--secondary-font-color);
                 box-shadow: 0 0 10px var(--primary-color);
@@ -75,8 +73,7 @@ footer {
 /*===========================================AddUpdateBook====================================================*/
 .add-update-book, .view-table {
     background: rgba(0, 0, 0, 0.65);
-    width: 50%;
-    margin: auto;
+    width: 50em;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 0px 2px var(--shadow-color);
@@ -177,8 +174,6 @@ footer {
         color: var(--primary-font-color);
     }
 
-
-
 .home {
     color: var(--secondary-font-color);
     text-align: center;
@@ -193,10 +188,10 @@ footer {
     }
 
         .home h1 .tamil-title {
-            font-size: 1.5em;
+            font-size: 1.2em;
             display: block;
             color: var(--secondary-font-color);
-            text-shadow: 3px 3px 4px var(--primary-color);
+            text-shadow: 2px 2px 4px var(--primary-color);
         }
 
     .home p {

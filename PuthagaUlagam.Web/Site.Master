@@ -7,27 +7,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Puthaga Ulagam</title>
+
     <link href="Assets/CSS/Theme/Primary.css" rel="stylesheet" />
     <link href="Assets/CSS/Core/Main.css" rel="stylesheet" />
-
 </head>
 <body>
     <form runat="server">
         <div class="container">
             <header>
-                <h1>Puthaga Ulagam----Store of knowledge</h1>
+                <div>
+                    <h1>Puthaga Ulagam-Store of knowledge</h1>
+                </div>
+                <div>
+                    <nav>
+                        <div>
+                            <ul>
+                                <li><a runat="server" href="~/">Home</a></li>
+                                <li><a runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
+                                <li><a runat="server" href="~/Views/ViewBook">View Book</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
             </header>
 
             <main>
-                <div>
-                    <nav>
-                        <ul>
-                            <li><a runat="server" href="~/">Home</a></li>
-                            <li><a runat="server" href="~/Views/AddUpdateBook">Add Book</a></li>
-                            <li><a runat="server" href="~/Views/ViewBook">View Book</a></li>
-                        </ul>
-                    </nav>
-                </div>
+
                 <div class="main-content">
                     <asp:ContentPlaceHolder ID="MainContent" runat="server">
                     </asp:ContentPlaceHolder>
