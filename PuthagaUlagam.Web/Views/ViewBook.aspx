@@ -7,15 +7,15 @@
         </div>
         <br />
         <div class="table-button">
-            <asp:GridView ID="TableBooks" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="TableBooks" runat="server" AutoGenerateColumns="False" DataKeyNames="BookISBN">
                 <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" />
-                    <asp:BoundField DataField="Title" HeaderText="Title" />
-                    <asp:BoundField DataField="Author" HeaderText="Author" />
-                    <asp:BoundField DataField="ISBN" HeaderText="Book Isbn" />
-                    <asp:BoundField DataField="Price" HeaderText="Price" />
-                    <asp:BoundField DataField="Date" HeaderText="Date" />
-                    <asp:BoundField DataField="Count" HeaderText="Book count" />
+                    <asp:BoundField DataField="BookID" HeaderText="ID" />
+                    <asp:BoundField DataField="BookName" HeaderText="Title" />
+                    <asp:BoundField DataField="BookAuthor" HeaderText="Author" />
+                    <asp:BoundField DataField="BookISBN" HeaderText="ISBN" />
+                    <asp:BoundField DataField="BookPrice" HeaderText="Price" />
+                    <asp:BoundField DataField="DateOfPublication" HeaderText="Date" />
+                    <asp:BoundField DataField="BookCount" HeaderText="Count" />
                     <asp:TemplateField HeaderText="Edit">
                         <ItemTemplate>
                             <asp:Button ID="btn_Edit" runat="server" Text="Edit" OnClick="EditBtn" />
@@ -23,7 +23,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Delete">
                         <ItemTemplate>
-                            <asp:Button ID="btn_Delete" runat="server" Text="Delete" OnClick="DeleteBtn" />
+                            <asp:Button ID="btn_Delete" runat="server" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this book?');" OnClick="DeleteBtn" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
