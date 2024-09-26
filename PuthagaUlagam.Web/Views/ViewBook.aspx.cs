@@ -25,22 +25,21 @@ namespace PuthagaUlagam
 
         protected void EditBtn(object sender, EventArgs e)
         {
-            HandleBookButton(sender, e, OperationType.Update);
+            HandleBookButton(sender, OperationType.Update);
         }
 
         protected void DeleteBtn(object sender, EventArgs e)
         {
-            HandleBookButton(sender, e, OperationType.Delete);
+            HandleBookButton(sender, OperationType.Delete);
         }
 
-        protected void HandleBookButton(object sender, EventArgs e, OperationType operationType)
+        protected void HandleBookButton(object sender, OperationType operationType)
         {
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             int rowIndex = row.RowIndex;
 
-            var books = operationBL.GetBooks();
-            int isbn = books[rowIndex].ISBN;
+            int isbn = Convert.ToInt32(TableBooks.DataKeys[rowIndex].Value);
 
             if (operationType == OperationType.Update)
             {
@@ -50,7 +49,7 @@ namespace PuthagaUlagam
             else if (operationType == OperationType.Delete)
             {
                 operationBL.DeleteBook(isbn);
-                LoadBooks();
+                LoadBooks(); 
             }
         }
     }
