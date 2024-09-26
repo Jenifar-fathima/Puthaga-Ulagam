@@ -23,7 +23,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Delete">
                         <ItemTemplate>
-                            <asp:Button ID="btn_Delete" runat="server" Text="Delete" OnClick="DeleteBtn" />
+                            <asp:Button ID="btn_Delete" runat="server" Text="Delete" OnClientClick="return confirm('Are you sure you want to delete this book?');" OnClick="DeleteBtn" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
