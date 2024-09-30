@@ -1,4 +1,4 @@
-﻿using PuthagaUlagam.Common;
+using PuthagaUlagam.Common;
 using PuthagaUlagam.Logic;
 using System;
 using System.Web.UI;
@@ -16,40 +16,39 @@ namespace PuthagaUlagam
                 LoadBooks();
             }
         }
-
-        private void LoadBooks()
+        public void LoadBooks()
         {
             TableBooks.DataSource = operationBL.GetBooks();
             TableBooks.DataBind();
         }
-
         protected void EditBtn(object sender, EventArgs e)
         {
-            HandleBookButton(sender, OperationType.Update);
+            HandleBookButton(sender, e, OperationType.Update);
         }
 
         protected void DeleteBtn(object sender, EventArgs e)
         {
-            HandleBookButton(sender, OperationType.Delete);
+            HandleBookButton(sender, e, OperationType.Delete);
         }
 
-        protected void HandleBookButton(object sender, OperationType operationType)
+        protected void HandleBookButton(object sender, EventArgs e, OperationType operationType)
         {
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             int rowIndex = row.RowIndex;
 
-            int isbn = Convert.ToInt32(TableBooks.DataKeys[rowIndex].Value);
+            var books = operationBL.GetBooks();
+            int isbn = Convert.ToInt32(books.Rows[rowIndex]["BookISBN"]);
 
             if (operationType == OperationType.Update)
             {
-                Session["ISBN"] = isbn;
+                Session["bookISBN"] = isbn;
                 Response.Redirect("AddUpdateBook.aspx");
             }
             else if (operationType == OperationType.Delete)
             {
                 operationBL.DeleteBook(isbn);
-                LoadBooks(); 
+                LoadBooks();
             }
         }
     }
