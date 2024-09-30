@@ -1,4 +1,4 @@
-﻿using PuthagaUlagam.Common;
+using PuthagaUlagam.Common;
 using PuthagaUlagam.Logic;
 using System;
 using System.Web.UI;

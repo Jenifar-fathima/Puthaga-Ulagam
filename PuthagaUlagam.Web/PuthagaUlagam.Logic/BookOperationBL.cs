@@ -1,4 +1,4 @@
-﻿using PuthagaUlagam.Common;
+using PuthagaUlagam.Common;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -119,6 +119,10 @@ namespace PuthagaUlagam.Logic
                 apiResponse.Message = Messages.ISBNAlreadyExist;
                 return apiResponse;
             }
+        }
+        public DataTable DataFill(DataTable bookDataTable)
+        {
+            return bookDataTable;
         }
     }
 }
