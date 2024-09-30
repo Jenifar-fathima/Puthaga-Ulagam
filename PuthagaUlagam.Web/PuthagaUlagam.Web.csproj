@@ -144,7 +144,6 @@
     <Compile Include="PuthagaUlagam.Common\Enums\OperationType.cs" />
     <Compile Include="PuthagaUlagam.Common\Messages\Messages.cs" />
     <Compile Include="PuthagaUlagam.Common\ValidationMethods\InputValidation.cs" />
-    <Compile Include="PuthagaUlagam.Data\Entities\Book.cs" />
     <Compile Include="PuthagaUlagam.Logic\BookOperationBL.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

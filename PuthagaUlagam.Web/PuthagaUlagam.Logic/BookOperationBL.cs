@@ -1,8 +1,7 @@
 ﻿using PuthagaUlagam.Common;
-using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Web.Configuration;
 
 namespace PuthagaUlagam.Logic
 {
@@ -10,6 +9,7 @@ namespace PuthagaUlagam.Logic
     {
         private readonly ApiResponse<bool> apiResponse = new ApiResponse<bool>();
 
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["BookDbConnection"].ConnectionString;
         public ApiResponse<bool> AddBook(BookDTO bookDto)
         {
             return AddOrUpdateBook(OperationType.Add, bookDto);
@@ -22,14 +22,16 @@ namespace PuthagaUlagam.Logic
 
         private ApiResponse<bool> AddOrUpdateBook(OperationType operationType, BookDTO bookDto)
         {
-            string query = operationType == OperationType.Add
-                ? "INSERT INTO Book (BookISBN, BookName, BookAuthor ,DateOfPublication, BookPrice, BookCount) VALUES (@BookISBN, @BookName, @BookAuthor ,@DateOfPublication, @BookPrice, @BookCount)"
-                : "UPDATE Book SET BookName = @BookName, BookAuthor = @BookAuthor, BookPrice = @BookPrice, DateOfPublication = @DateOfPublication, BookCount = @BookCount WHERE BookISBN = @BookISBN";
+            ApiResponse<bool> apiResponse = new ApiResponse<bool>();
 
-            using (SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand(query, con);
+                string storedProcedureName = "AddOrUpdateBook";
 
+                SqlCommand cmd = new SqlCommand(storedProcedureName, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@OperationType", operationType == OperationType.Add ? "Add" : "Update");
                 cmd.Parameters.AddWithValue("@BookISBN", bookDto.ISBN);
                 cmd.Parameters.AddWithValue("@BookName", bookDto.Title);
                 cmd.Parameters.AddWithValue("@BookAuthor", bookDto.Author);
@@ -37,86 +39,71 @@ namespace PuthagaUlagam.Logic
                 cmd.Parameters.AddWithValue("@BookPrice", bookDto.Price);
                 cmd.Parameters.AddWithValue("@BookCount", bookDto.Count);
 
-                con.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    apiResponse.IsSuccess = true;
-                    apiResponse.Message = Messages.BookAddSuccess;
-                }
-                else
-                {
-                    apiResponse.Message = Messages.BookAddFail;
-                }
+                SqlDataAdapter adpt = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable();
+                adpt.Fill(dt);
+
+                apiResponse.IsSuccess = true;
+                apiResponse.Message = Messages.BookAddSuccess;
             }
             return apiResponse;
         }
 
+
         public DataTable GetBooks()
         {
-            DataTable dtBooks = new DataTable();
-            string query = "SELECT * FROM Book order by BookID";
+            DataTable booksTable = new DataTable();
+            string query = "SELECT * FROM Book ORDER BY BookID";
 
-            using (SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand(query, con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
+
                 con.Open();
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    dtBooks.Load(reader); 
-                }
+                dataAdapter.Fill(booksTable);
             }
-            return dtBooks;
+            return booksTable;
         }
 
         public void DeleteBook(int bookIsbn)
         {
-            string queryDelete = "DELETE FROM Book WHERE BookISBN = @ISBN";
+            string query = "DELETE FROM Book WHERE BookISBN = @ISBN";
 
-            using (SqlConnection con = new SqlConnection(WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmdDelete = new SqlCommand(queryDelete, con);
+                SqlCommand cmd = new SqlCommand(query, con);
 
-                cmdDelete.Parameters.AddWithValue("@ISBN", bookIsbn);
-
+                cmd.Parameters.AddWithValue("@ISBN", bookIsbn);
                 con.Open();
-
-                cmdDelete.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
         }
 
-        public Book GetBookByIsbn(int bookIsbn)
-        {
-            Book book = null;
 
-            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString))
+        public DataTable GetBookByIsbn(int bookIsbn)
+        {
+            DataTable bookDataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Book WHERE BookISBN = @ISBN";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ISBN", bookIsbn);
 
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
                 connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    book = new Book
-                    {
-                        ISBN = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Author = reader.GetString(2),
-                        Date = reader.GetDateTime(3),
-                        Price = reader.GetDecimal(4),
-                        Count = reader.GetInt32(5)
-                    };
-                }
+                adapter.Fill(bookDataTable);
             }
-            return book;
+            return bookDataTable;
         }
 
         public ApiResponse<bool> UniqueIsbnValidation(int bookIsbn)
         {
-            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT COUNT(*) FROM Book WHERE BookISBN = @ISBN";
                 SqlCommand cmd = new SqlCommand(query, connection);
@@ -132,23 +119,6 @@ namespace PuthagaUlagam.Logic
                 apiResponse.Message = Messages.ISBNAlreadyExist;
                 return apiResponse;
             }
-        }
-
-        public int GetIsbnValue(SqlDataReader reader,int rowIndex)
-        {
-            int currentRowIndex = 0;
-            int isbn = 0;
-
-            while (reader.Read())
-            {
-                if (currentRowIndex == rowIndex)
-                {
-                    isbn = Convert.ToInt32(reader["BookISBN"]);
-                    break;
-                }
-                currentRowIndex++;
-            }
-            return isbn;
         }
     }
 }
